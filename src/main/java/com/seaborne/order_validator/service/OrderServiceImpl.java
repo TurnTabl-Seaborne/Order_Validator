@@ -17,17 +17,17 @@ import static java.lang.Math.abs;
 @Service
 public class OrderServiceImpl implements OrderService{
 
-    @Autowired
-    private RestTemplate restTemplate;
-
     @Override
     public Boolean isOrderValid(GetOrderRequest orderRequest) {
 
         Boolean isOrderValid = false;
 
-        StockData stockdata1 = restTemplate.getForObject("https://exchange.matraining.com/md/"+orderRequest.getTicker()  , StockData.class);
-        StockData stockdata2 = restTemplate.getForObject("https://exchange2.matraining.com/md/"+orderRequest.getTicker()  , StockData.class);
 
+        WebClientService webClientService = new WebClientService("https://exchange.matraining.com");
+        WebClientService webClientService1 = new WebClientService("https://exchange2.matraining.com");
+
+        StockData stockdata1 = webClientService.getData(orderRequest.getTicker()).block();
+        StockData stockdata2 = webClientService1.getData(orderRequest.getTicker()).block();
 
         StockData AvData =
                 new StockData(

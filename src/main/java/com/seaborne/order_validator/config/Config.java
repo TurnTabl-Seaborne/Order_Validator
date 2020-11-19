@@ -62,8 +62,4 @@ public class Config  extends WsConfigurerAdapter {
         return exceptionResolver;
     }
 
-    @Bean
-    public RestTemplate getRestTemplate(){
-        return  new RestTemplate();
-    }
 }

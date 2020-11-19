@@ -1,24 +1,16 @@
 package com.seaborne.order_validator.service;
 
-import com.seaborne.consumervalidator.GetOrderRequest;
-import com.seaborne.consumervalidator.Order;
+import com.seaborne.consumervalidator.SendOrderRequest;
 import com.seaborne.order_validator.model.StockData;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
-import javax.annotation.PostConstruct;
-import java.util.HashMap;
-import java.util.Map;
-
-import static java.lang.Math.abs;
 
 
 @Service
 public class OrderServiceImpl implements OrderService{
 
     @Override
-    public Boolean isOrderValid(GetOrderRequest orderRequest) {
+    public Boolean isOrderValid(SendOrderRequest orderRequest) {
 
         Boolean isOrderValid = false;
 

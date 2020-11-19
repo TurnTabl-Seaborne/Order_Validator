@@ -1,12 +1,12 @@
 package com.seaborne.order_validator.endpoint;
 
-
-import com.seaborne.consumervalidator.GetOrderRequest;
-import com.seaborne.consumervalidator.GetOrderResponse;
+import com.seaborne.consumervalidator.SendOrderRequest;
+import com.seaborne.consumervalidator.SendOrderResponse;
 import com.seaborne.consumervalidator.ServiceStatus;
 import com.seaborne.order_validator.exception.ServiceFaultException;
 import com.seaborne.order_validator.service.OrderServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
@@ -28,16 +28,22 @@ public class OrderEndpoint{
         this.orderService = orderService;
     }
 
-    @PayloadRoot(namespace = NAMESPACE_URI,localPart = "getOrderRequest")
+    @PayloadRoot(namespace = NAMESPACE_URI,localPart = "sendOrderRequest")
     @ResponsePayload
-    public GetOrderResponse getOrders(@RequestPayload GetOrderRequest request){
-        GetOrderResponse response = new GetOrderResponse();
-        //response.setOrder(orderService.getOrders(request.getPortfolioId()));
+    public SendOrderResponse getOrders(@RequestPayload SendOrderRequest request){
+        SendOrderResponse response = new SendOrderResponse();
         if(orderService.isOrderValid(request)){
-            return response;
+
+            response.setStatusCode(HttpStatus.OK.value());
+            response.setMessage("Valid");
+
             //TODO: publish to trading via redis
         }else{
-            throw new ServiceFaultException("ERROR",new ServiceStatus("900","Invalid Order"));
+
+            response.setStatusCode(HttpStatus.FORBIDDEN.value());
+            response.setMessage("Invalid");
+
         }
+        return response;
     }
 }

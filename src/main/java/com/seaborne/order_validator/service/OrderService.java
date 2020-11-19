@@ -1,7 +1,7 @@
 package com.seaborne.order_validator.service;
 
-import com.seaborne.consumervalidator.GetOrderRequest;
+import com.seaborne.consumervalidator.SendOrderRequest;
 
 public interface OrderService{
-    public Boolean isOrderValid(GetOrderRequest orderRequest);
+    public Boolean isOrderValid(SendOrderRequest orderRequest);
 }

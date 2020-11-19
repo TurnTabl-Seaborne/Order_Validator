@@ -44,13 +44,13 @@ public class OrderEndpoint{
 
             }finally {
                 response.setStatusCode(HttpStatus.OK.value());
-                response.setMessage("Valid");
+                response.setMessage("valid");
             }
-            
+
         }else{
 
             response.setStatusCode(HttpStatus.FORBIDDEN.value());
-            response.setMessage("Invalid");
+            response.setMessage("invalid");
 
         }
         return response;

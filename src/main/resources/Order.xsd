@@ -27,7 +27,7 @@
         </xs:complexType>
     </xs:element>
 
-    <xs:complexType name="order">
+    <xs:complexType name="ClientOrder">
         <xs:sequence>
             <xs:element name="portfolioId" type="xs:int"/>
             <xs:element name="ticker" type="xs:string"/>
@@ -39,6 +39,7 @@
             <xs:element name="state" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
+
 
     <xs:complexType name="serviceStatus">
         <xs:sequence>

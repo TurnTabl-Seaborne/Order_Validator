@@ -4,7 +4,7 @@ public class StockData {
     private double bidPrice;
     private double askPrice;
     private int buyLimit;
-    private  String  ticker;
+    private  String  product;
     private  int sellLimit;
     private  double lastTradedPrice;
     private  double maxPriceShift;
@@ -17,7 +17,7 @@ public class StockData {
         this.bidPrice = bidPrice;
         this.askPrice = askPrice;
         this.buyLimit = buyLimit;
-        this.ticker = ticker;
+        this.product = ticker;
         this.sellLimit = sellLimit;
         this.lastTradedPrice = lastTradedPrice;
         this.maxPriceShift = maxPriceShift;
@@ -48,11 +48,11 @@ public class StockData {
     }
 
     public String getTicker() {
-        return ticker;
+        return product;
     }
 
     public void setTicker(String ticker) {
-        this.ticker = ticker;
+        this.product = ticker;
     }
 
     public int getSellLimit() {
@@ -85,7 +85,7 @@ public class StockData {
                 "bidPrice=" + bidPrice +
                 ", askPrice=" + askPrice +
                 ", buyLimit=" + buyLimit +
-                ", ticker='" + ticker + '\'' +
+                ", ticker='" + product + '\'' +
                 ", sellLimit=" + sellLimit +
                 ", lastTradedPrice=" + lastTradedPrice +
                 ", maxPriceShift=" + maxPriceShift +

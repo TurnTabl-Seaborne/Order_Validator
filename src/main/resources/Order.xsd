@@ -7,7 +7,7 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="portfolioId" type="xs:int"/>
-                <xs:element name="ticker" type="xs:string"/>
+                <xs:element name="product" type="xs:string"/>
                 <xs:element name="quantity" type="xs:int"/>
                 <xs:element name="side" type="xs:string"/>
                 <xs:element name="price" type="xs:double"/>
@@ -30,7 +30,7 @@
     <xs:complexType name="ClientOrder">
         <xs:sequence>
             <xs:element name="portfolioId" type="xs:int"/>
-            <xs:element name="ticker" type="xs:string"/>
+            <xs:element name="product" type="xs:string"/>
             <xs:element name="quantity" type="xs:int"/>
             <xs:element name="side" type="xs:string"/>
             <xs:element name="price" type="xs:double"/>
@@ -39,7 +39,6 @@
             <xs:element name="state" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
-
 
     <xs:complexType name="serviceStatus">
         <xs:sequence>

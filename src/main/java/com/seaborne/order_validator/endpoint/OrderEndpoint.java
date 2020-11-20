@@ -3,8 +3,6 @@ package com.seaborne.order_validator.endpoint;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.seaborne.consumervalidator.SendOrderRequest;
 import com.seaborne.consumervalidator.SendOrderResponse;
-import com.seaborne.consumervalidator.ServiceStatus;
-import com.seaborne.order_validator.exception.ServiceFaultException;
 import com.seaborne.order_validator.service.OrderServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

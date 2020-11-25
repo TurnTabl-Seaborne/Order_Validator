@@ -31,6 +31,7 @@ public class OrderEndpoint{
     @PayloadRoot(namespace = NAMESPACE_URI,localPart = "sendOrderRequest")
     @ResponsePayload
     public SendOrderResponse getOrders(@RequestPayload SendOrderRequest order){
+
         SendOrderResponse response = new SendOrderResponse();
         if(orderService.isOrderValid(order)){
 
@@ -52,5 +53,7 @@ public class OrderEndpoint{
 
         }
         return response;
+//        System.out.println(order);
+//        return null;
     }
 }

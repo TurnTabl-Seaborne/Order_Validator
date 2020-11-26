@@ -37,7 +37,8 @@ public class OrderEndpoint{
 
             //TODO: publish to trading via redis
             try{
-                Jedis client = new Jedis("localhost", 9090);
+                String redisURL = System.getenv("REDIS_URL");
+                Jedis client = new Jedis(redisURL);
                 client.publish("validation", objectMapper.writeValueAsString(order));
             }catch(Exception e){
 

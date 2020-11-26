@@ -27,56 +27,28 @@ public class StockData {
         return bidPrice;
     }
 
-    public void setBidPrice(double bidPrice) {
-        this.bidPrice = bidPrice;
-    }
-
     public double getAskPrice() {
         return askPrice;
-    }
-
-    public void setAskPrice(double askPrice) {
-        this.askPrice = askPrice;
     }
 
     public int getBuyLimit() {
         return buyLimit;
     }
 
-    public void setBuyLimit(int buyLimit) {
-        this.buyLimit = buyLimit;
-    }
-
-    public String getTicker() {
+    public String getProduct() {
         return product;
-    }
-
-    public void setTicker(String ticker) {
-        this.product = ticker;
     }
 
     public int getSellLimit() {
         return sellLimit;
     }
 
-    public void setSellLimit(int sellLimit) {
-        this.sellLimit = sellLimit;
-    }
-
     public double getLastTradedPrice() {
         return lastTradedPrice;
     }
 
-    public void setLastTradedPrice(double lastTradedPrice) {
-        this.lastTradedPrice = lastTradedPrice;
-    }
-
     public double getMaxPriceShift() {
         return maxPriceShift;
-    }
-
-    public void setMaxPriceShift(double maxPriceShift) {
-        this.maxPriceShift = maxPriceShift;
     }
 
     @Override

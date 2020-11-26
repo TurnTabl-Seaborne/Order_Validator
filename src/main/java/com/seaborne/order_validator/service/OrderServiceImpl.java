@@ -34,6 +34,41 @@ public class OrderServiceImpl implements OrderService{
         return pass;
     }
 
+    public boolean withinLimit(SendOrderRequest orderRequest){
+
+        StockData sd_1 = WEB_CLIENT_EXCHANGE_SERVICE_1.getProductMarketData(orderRequest.getProduct());
+
+        boolean pass = false;
+
+        if (orderRequest.getSide().equals("BUY")){
+            if (orderRequest.getQuantity() <= sd_1.getBuyLimit())
+                pass = true;
+        }else if (orderRequest.getSide().equals("SELL")){
+            if (orderRequest.getQuantity() <= sd_1.getSellLimit())
+                pass = true;
+        }
+
+        return pass;
+    }
+
+    public boolean withinShift(SendOrderRequest orderRequest){
+
+        boolean pass = false;
+
+        StockData sd_1 = WEB_CLIENT_EXCHANGE_SERVICE_1.getProductMarketData(orderRequest.getProduct());
+
+        double lower = sd_1.getAskPrice() - sd_1.getMaxPriceShift();
+        double upper = sd_1.getAskPrice() + sd_1.getMaxPriceShift();
+        double price = orderRequest.getPrice();
+
+        if (price >= lower && price <= upper){
+            pass = true;
+        }
+
+        return pass;
+
+    }
+
     @Override
     public Boolean isOrderValid(SendOrderRequest orderRequest) {
 
@@ -43,53 +78,13 @@ public class OrderServiceImpl implements OrderService{
                 productExists(orderRequest.getProduct())
                 &&
                 nonNegativePrice(orderRequest.getPrice())
-        )
+                &&
+                withinLimit(orderRequest)
+                &&
+                withinShift(orderRequest)
+        ) {
             isOrderValid = true;
-
-//        WebClientService webClientService = new WebClientService("https://exchange.matraining.com");
-//        WebClientService webClientService1 = new WebClientService("https://exchange2.matraining.com");
-//
-//        StockData stockdata1 = webClientService.getData(orderRequest.getProduct());
-//        StockData stockdata2 = webClientService1.getData(orderRequest.getProduct());
-//
-//        StockData AvData =
-//                new StockData(
-//                        (stockdata1.getBidPrice()+stockdata2.getBidPrice())/2,
-//                        (stockdata1.getAskPrice()+stockdata2.getAskPrice())/2,
-//                        stockdata2.getBuyLimit(),
-//                        orderRequest.getProduct(),
-//                        stockdata1.getSellLimit(),
-//                        Math.max(stockdata1.getLastTradedPrice(), stockdata2.getLastTradedPrice()),
-//                        Math.max(stockdata1.getMaxPriceShift(), stockdata2.getMaxPriceShift())
-//                );
-//
-//
-//
-//        if(orderRequest.getSide().matches("BUY")){
-//            // Check if the price is within 120% of the average price on both exchanges
-//            if(AvData.getBidPrice()!=0){
-//                if (((orderRequest.getPrice()/AvData.getBidPrice())*100 < 120)){
-//                    isOrderValid = true;
-//                }
-//            }else{
-//                if (((orderRequest.getPrice()*100) < 120)){
-//                    isOrderValid = true;
-//                }
-//            }
-//        }
-//
-//        if(orderRequest.getSide().matches("SELL")){
-//            if(AvData.getAskPrice()!=0){
-//                if (((orderRequest.getPrice() / AvData.getAskPrice()) * 100) > AvData.getAskPrice() * 120) {
-//                    isOrderValid = true;
-//                }
-//            }else{
-//                if ((orderRequest.getPrice() * 100) > AvData.getAskPrice() * 120) {
-//                    isOrderValid = true;
-//                }
-//            }
-//
-//        }
+        }
 
         return isOrderValid;
 

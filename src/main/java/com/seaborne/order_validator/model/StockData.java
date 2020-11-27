@@ -1,12 +1,21 @@
 package com.seaborne.order_validator.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class StockData {
+    @JsonProperty("BID_PRICE")
     private double bidPrice;
+    @JsonProperty("ASK_PRICE")
     private double askPrice;
+    @JsonProperty("BUY_LIMIT")
     private int buyLimit;
+    @JsonProperty("TICKER")
     private  String  product;
+    @JsonProperty("SELL_LIMIT")
     private  int sellLimit;
+    @JsonProperty("LAST_TRADED_PRICE")
     private  double lastTradedPrice;
+    @JsonProperty("MAX_SHIFT_PRICE")
     private  double maxPriceShift;
 
     public  StockData(){

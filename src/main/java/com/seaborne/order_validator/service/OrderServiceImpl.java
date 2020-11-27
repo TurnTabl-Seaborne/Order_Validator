@@ -37,6 +37,7 @@ public class OrderServiceImpl implements OrderService{
     public boolean withinLimit(SendOrderRequest orderRequest){
 
         StockData sd_1 = WEB_CLIENT_EXCHANGE_SERVICE_1.getProductMarketData(orderRequest.getProduct());
+//        System.out.println(sd_1);
 
         boolean pass = false;
 
@@ -56,6 +57,7 @@ public class OrderServiceImpl implements OrderService{
         boolean pass = false;
 
         StockData sd_1 = WEB_CLIENT_EXCHANGE_SERVICE_1.getProductMarketData(orderRequest.getProduct());
+//        System.out.println(sd_1);
 
         double lower = sd_1.getAskPrice() - sd_1.getMaxPriceShift();
         double upper = sd_1.getAskPrice() + sd_1.getMaxPriceShift();

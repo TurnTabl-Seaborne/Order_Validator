@@ -15,7 +15,7 @@ public class StockData {
     private  int sellLimit;
     @JsonProperty("LAST_TRADED_PRICE")
     private  double lastTradedPrice;
-    @JsonProperty("MAX_SHIFT_PRICE")
+    @JsonProperty("MAX_PRICE_SHIFT")
     private  double maxPriceShift;
 
     public  StockData(){

@@ -12,8 +12,6 @@
                 <xs:element name="side" type="xs:string"/>
                 <xs:element name="price" type="xs:double"/>
                 <xs:element name="algorithm" type="xs:string"/>
-                <xs:element name="status" type="xs:string"/>
-                <xs:element name="state" type="xs:string"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>

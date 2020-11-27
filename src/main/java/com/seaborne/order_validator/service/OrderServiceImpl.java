@@ -37,14 +37,24 @@ public class OrderServiceImpl implements OrderService{
         if(orderRequest.getSide().matches("BUY")){
             if(AvData.getBidPrice()!=0){
                 if (((orderRequest.getPrice()/AvData.getBidPrice())*100 < 120)){
-                    if(orderRequest.getQuantity() < AvData.getBuyLimit()){
-                        isOrderValid = true;
+                    if(AvData.getBuyLimit() > 0){
+                        if(orderRequest.getQuantity() < AvData.getBuyLimit()){
+                            isOrderValid = true;
+                        }
+                    }else{
+                            isOrderValid = true;
                     }
                 }
             }else{
                 if (((orderRequest.getPrice()*100) < 120)){
                     if(orderRequest.getQuantity() < AvData.getBuyLimit()){
-                        isOrderValid = true;
+                        if(AvData.getBuyLimit() > 0){
+                            if(orderRequest.getQuantity() < AvData.getBuyLimit()){
+                                isOrderValid = true;
+                            }
+                        }else{
+                            isOrderValid = true;
+                        }
                     }
                 }
             }
@@ -53,13 +63,21 @@ public class OrderServiceImpl implements OrderService{
         if(orderRequest.getSide().matches("SELL")){
             if(AvData.getAskPrice()!=0){
                 if (((orderRequest.getPrice() / AvData.getAskPrice()) * 100) > AvData.getAskPrice() * 120) {
-                    if(orderRequest.getQuantity() < AvData.getSellLimit()){
-                        isOrderValid = true;
+                    if(AvData.getSellLimit() > 0) {
+                        if (orderRequest.getQuantity() < AvData.getSellLimit()) {
+                            isOrderValid = true;
+                        }
+                    }else{
+                            isOrderValid = true;
                     }
                 }
             }else{
                 if ((orderRequest.getPrice() * 100) > AvData.getAskPrice() * 120) {
-                    if(orderRequest.getQuantity() < AvData.getSellLimit()){
+                    if(AvData.getSellLimit() > 0) {
+                        if (orderRequest.getQuantity() < AvData.getSellLimit()) {
+                            isOrderValid = true;
+                        }
+                    }else{
                         isOrderValid = true;
                     }
                 }
